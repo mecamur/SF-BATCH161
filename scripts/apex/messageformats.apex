@@ -39,3 +39,5 @@ System.debug(jsonString);
 //Test Callouts
 RestCallouts.getAnimals();
 RestCallouts.getProducts();
+RestCallouts.getAirlines(2);
+RestCallouts.postProduct('a015i00000zj4QmAAI');
