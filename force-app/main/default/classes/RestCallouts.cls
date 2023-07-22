@@ -228,4 +228,25 @@ public with sharing class RestCallouts {
         System.debug(response.getStatusCode());
     }
 
+    //Endpoint: https://forcecom544-dev-ed.develop.my.salesforce.com/services/apexrest/Case/500B000000ApP1jIAF
+    //Http Method: GET
+    public static HttpResponse getCase() {
+        //1. Prepare HttpRequest and wrap all the necessary data in it
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('callout:NC_Forcecom44/services/apexrest/Case/500B000000ApP1jIAF');
+        request.setMethod('GET');
+
+        //2. Prepare Internet
+        Http http = new Http();
+
+        //3. Send the request over the internet in order to receive the response
+        HttpResponse response = http.send(request);
+
+        //4. Process the response
+        System.debug(response.getStatus());
+        System.debug(response.getStatusCode());
+        System.debug(response.getBody());
+        return response;
+    }
+
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <description>ITS Checklist</description>
+    <environments>Default</environments>
+    <interviewLabel>ITS Checklist {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ITS Checklist</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <description>Save the ITS checklist information</description>
+        <name>Save_Checlist</name>
+        <label>Save Checlist</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <inputReference>recordId</inputReference>
+    </recordUpdates>
+    <screens>
+        <description>ITS Checklist</description>
+        <name>ITS_Checklist</name>
+        <label>ITS Checklist</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Save_Checlist</targetReference>
+        </connector>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <isRequired>false</isRequired>
+            <objectFieldReference>recordId.ITS_Badge_Ready__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <isRequired>false</isRequired>
+            <objectFieldReference>recordId.ITS_Laptop_Ready__c</objectFieldReference>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>ITS_Checklist</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>current contact record</description>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+</Flow>
