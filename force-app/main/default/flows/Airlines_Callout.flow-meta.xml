@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Action to fetch airlines</description>
+        <name>Get_Airlines</name>
+        <label>Get Airlines</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <actionName>GetAirlinesService.GetAirlinesCallout</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Callout_Succeeded</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>AirId</name>
+            <value>
+                <elementReference>Enter_the_Airlines_ID</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <decisions>
+        <description>Check if the callout is succeeded</description>
+        <name>Callout_Succeeded</name>
+        <label>Callout Succeeded?</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>400</defaultConnectorLabel>
+        <rules>
+            <name>X200</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Airlines.responseCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Airlines_Record</targetReference>
+            </connector>
+            <label>200</label>
+        </rules>
+    </decisions>
+    <description>Airlines Callout</description>
+    <environments>Default</environments>
+    <interviewLabel>Airlines Callout {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Airlines Callout</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <description>Create Airlines Record</description>
+        <name>Create_Airlines_Record</name>
+        <label>Create Airlines Record</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Airlines_Id__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Country__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.country</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Established__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.established</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Head_Quaters__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.headx5fquaters</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Logo_URL__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.logo</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Slogan__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.slogan</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Website__c</field>
+            <value>
+                <elementReference>Get_Airlines.2XX.website</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Airlines__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <screens>
+        <description>Screen to capture airlines id</description>
+        <name>Airlines_ID_Entry_Screen</name>
+        <label>Airlines ID Entry Screen</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Airlines</targetReference>
+        </connector>
+        <fields>
+            <name>Enter_the_Airlines_ID</name>
+            <dataType>String</dataType>
+            <fieldText>Enter the Airlines ID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen to display error message</description>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(211, 24, 24);&quot;&gt;{!Get_Airlines.defaultExc}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(211, 24, 24);&quot;&gt;{!$Flow.FaultMessage}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen to display success message</description>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Success_Message</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(39, 150, 11); font-size: 14px;&quot;&gt;Airline details have been fetched successfully!&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Airlines_ID_Entry_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+</Flow>

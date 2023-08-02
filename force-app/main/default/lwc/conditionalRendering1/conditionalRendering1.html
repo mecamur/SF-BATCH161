@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Conditional Rendering 1">
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={expression1}>
+                Statement 1
+            </template>
+            <template lwc:elseif={expression2}>
+                Statement 2
+            </template>
+            <template lwc:elseif={expression3}>
+                Statement 3
+            </template>
+            <template lwc:else>
+                Statement 4
+            </template>
+        </div>
+    </lightning-card>
+</template>

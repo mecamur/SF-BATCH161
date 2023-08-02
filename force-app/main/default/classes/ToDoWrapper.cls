@@ -1,6 +1,7 @@
-public with sharing class ToDoWrapper {
-    public Integer id;
-    public String todo;
-    public Boolean completed;
-    public Integer userId;
+global with sharing class ToDoWrapper {
+    global Integer id;
+    global String sfdc_id;
+    global String todo;
+    global Boolean completed;
+    global Integer userId;
 }

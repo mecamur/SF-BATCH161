@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Template Looping 2">
+        <div class="slds-var-m-around_medium">
+            <template for:each={contacts} for:item="con">
+                <div key={con.Id} class="slds-box slds-theme_shade slds-var-m-bottom_small">
+                    <div><strong>{con.Name}</strong></div>
+                    <div>{con.Title}, {con.Company}</div>
+                    <div>Staying in {con.Stay}</div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Track Property">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                type="text"
+                value={contact.title}
+                label="Enter your title"
+                onchange={changeHandler}>
+            </lightning-input>
+            <div class="slds-var-m-top_small">
+                Hello, my name is {contact.name} and I'm a {contact.title}
+            </div>
+        </div>
+    </lightning-card>
+</template>

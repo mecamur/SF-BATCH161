@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Conditional Rendering 2">
+        <div class="slds-var-m-around_medium">
+            <lightning-button
+                label="Show Content"
+                variant="brand"
+                onclick={clickHandler}>
+            </lightning-button>
+            <template lwc:if={showContent}>
+                <div>Buttons must have an accessible name to enable assistive technology to describe the button's purpose. Provide this name using the label attribute and make it a clear call to action, for example, "Edit record".</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

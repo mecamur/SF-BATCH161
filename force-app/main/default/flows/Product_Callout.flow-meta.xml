@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Action to get product details</description>
+        <name>Get_Product</name>
+        <label>Get Product</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <actionName>GetProductService.GetProductCallout</actionName>
+        <actionType>externalService</actionType>
+        <connector>
+            <targetReference>Callout_Succeeded</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>ProdId</name>
+            <value>
+                <elementReference>Enter_the_Product_ID</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <decisions>
+        <description>Check if the callout is succeeded</description>
+        <name>Callout_Succeeded</name>
+        <label>Callout Succeeded?</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>400</defaultConnectorLabel>
+        <rules>
+            <name>X200</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Product.responseCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Product_Record</targetReference>
+            </connector>
+            <label>200</label>
+        </rules>
+    </decisions>
+    <description>Product Callout</description>
+    <environments>Default</environments>
+    <interviewLabel>Product Callout {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Product Callout</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <description>Create Product Record</description>
+        <name>Create_Product_Record</name>
+        <label>Create Product Record</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Brand__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.brand</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Category__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.category</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Discount_Percentage__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.discountPercentage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Get_Product.2XX.title</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Price__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.price</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product_Id__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Rating__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.rating</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Stock__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.stock</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Thumbnail__c</field>
+            <value>
+                <elementReference>Get_Product.2XX.thumbnail</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Ecommerce_Product__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <screens>
+        <description>Screen to display error detail</description>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(208, 14, 14);&quot;&gt;{!Get_Product.defaultExc}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(208, 14, 14);&quot;&gt;{!$Flow.FaultMessage}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen to capture product id</description>
+        <name>Product_ID_Entry_Screen</name>
+        <label>Product ID Entry Screen</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Product</targetReference>
+        </connector>
+        <fields>
+            <name>Enter_the_Product_ID</name>
+            <dataType>String</dataType>
+            <fieldText>Enter the Product ID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen to display success message</description>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Success_Message</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(26, 167, 24);&quot;&gt;Product details have been fetched successfully!&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Product_ID_Entry_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+</Flow>

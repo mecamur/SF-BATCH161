@@ -19,8 +19,4 @@ public with sharing class SoapCallouts {
         System.debug(result);
         return result;
     }
-
-    //subtract
-
-    //divide
 }
