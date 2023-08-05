@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Lightning Record View Form - ToDo" icon-name="action:check">
+        <div class="slds-var-m-around_medium">
+            <lightning-record-view-form
+                object-api-name={objectName}
+                record-id={recordId}
+                density="compact">
+                <!-- fields in readonly -->
+                <div class="header-style">ToDo Details</div>
+                <lightning-output-field field-name={fields.todo}></lightning-output-field>
+                <lightning-output-field field-name={fields.id}></lightning-output-field>
+                <lightning-output-field field-name={fields.userId}></lightning-output-field>
+                <lightning-output-field field-name={fields.status}></lightning-output-field>
+            </lightning-record-view-form>
+        </div>
+    </lightning-card>
+</template>
