@@ -1,0 +1,58 @@
+<template>
+    <lightning-card title="Account Create Record" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <form>
+                <!-- Account Name -->
+                <lightning-input
+                    type="text"
+                    label="Account Name"
+                    name="Name"
+                    onchange={changeHandler}>
+                </lightning-input>
+
+                <!-- Account Type -->
+                <lightning-combobox
+                    label="Account Type"
+                    name="Type"
+                    options={typeOptions}
+                    onchange={changeHandler}>
+                </lightning-combobox>
+
+                <!-- Industry -->
+                <lightning-combobox
+                    label="Industry"
+                    name="Industry"
+                    options={industryOptions}
+                    onchange={changeHandler}>
+                </lightning-combobox>
+
+                <!-- Annual Revenue -->
+                <lightning-input
+                    type="number"
+                    label="Annual Revenue"
+                    name="AnnualRevenue"
+                    onchange={changeHandler}>
+                </lightning-input>
+
+                <template lwc:if={isHighRevenue}>
+                    <div class="slds-text-color_success">This is customer with high revenue</div>
+                </template>
+
+                <!-- buttons -->
+                <div class="slds-align_absolute-center slds-var-m-top_small">
+                    <lightning-button
+                        label="Cancel"
+                        variant="neutral"
+                        class="slds-var-m-right_x-small"
+                        onclick={cancelHandler}>
+                    </lightning-button>
+                    <lightning-button
+                        label="Save"
+                        variant="brand"
+                        onclick={saveHandler}>
+                    </lightning-button>
+                </div>
+            </form>
+        </div>
+    </lightning-card>
+</template>

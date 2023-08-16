@@ -1,0 +1,58 @@
+<template>
+    <lightning-card title="Update Product Record" icon-name="standard:product">
+        <div class="slds-var-m-around_medium">
+            <div>
+                <template lwc:if={showValidations}>
+                    <div class="error-message">{validationMessage}</div>
+                </template>
+            </div>
+            <form class="productform">
+                <template lwc:if={product}>
+                    <!-- Title -->
+                    <lightning-input
+                        type="text"
+                        label="Product Title"
+                        name="Name"
+                        value={product.fields.Name.value}
+                        onchange={changeHandler}>
+                    </lightning-input>
+
+                    <!-- Brand -->
+                    <lightning-input
+                        type="text"
+                        label="Brand"
+                        name="Brand__c"
+                        value={product.fields.Brand__c.value}
+                        onchange={changeHandler}>
+                    </lightning-input>
+
+                    <!-- Category -->
+                    <lightning-input
+                        type="text"
+                        label="Category"
+                        name="Category__c"
+                        value={product.fields.Category__c.value}
+                        onchange={changeHandler}>
+                    </lightning-input>
+
+                    <!-- Description -->
+                    <lightning-textarea
+                        label="Description"
+                        name="Description__c"
+                        value={product.fields.Description__c.value}
+                        onchange={changeHandler}>
+                    </lightning-textarea>
+
+                    <!-- buttons -->
+                    <div class="slds-align_absolute-center slds-var-m-top_small">
+                        <lightning-button
+                            label="Update Record"
+                            variant="success"
+                            onclick={updateHandler}>
+                        </lightning-button>
+                    </div>
+                </template>
+            </form>
+        </div>
+    </lightning-card>
+</template>

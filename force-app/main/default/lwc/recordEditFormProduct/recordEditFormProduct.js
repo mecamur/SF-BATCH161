@@ -6,7 +6,6 @@ import CATEGORY_FIELD from '@salesforce/schema/Ecommerce_Product__c.Category__c'
 import PRICE_FIELD from '@salesforce/schema/Ecommerce_Product__c.Price__c';
 import DESC_FIELD from '@salesforce/schema/Ecommerce_Product__c.Description__c';
 import THUMBNAIL_FIELD from '@salesforce/schema/Ecommerce_Product__c.Thumbnail__c';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class RecordEditFormProduct extends LightningElement {
     objectName = ECOM_OBJECT;
@@ -21,11 +20,6 @@ export default class RecordEditFormProduct extends LightningElement {
     };
 
     successHandler() {
-        const successToast = new ShowToastEvent({
-            title: "Success",
-            message: "Product record has been saved successfully!",
-            variant: "success"
-        });
-        this.dispatchEvent(successToast);
+        
     }
 }

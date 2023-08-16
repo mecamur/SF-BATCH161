@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rank__c</fullName>
+    <externalId>false</externalId>
+    <label>Rank</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Distinction</fullName>
+                <default>false</default>
+                <label>Distinction</label>
+            </value>
+            <value>
+                <fullName>Top Rank</fullName>
+                <default>false</default>
+                <label>Top Rank</label>
+            </value>
+            <value>
+                <fullName>Medium Rank</fullName>
+                <default>false</default>
+                <label>Medium Rank</label>
+            </value>
+            <value>
+                <fullName>Need to Improve</fullName>
+                <default>false</default>
+                <label>Need to Improve</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

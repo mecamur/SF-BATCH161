@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Get Record ToDo" icon-name="standard:entitlement">
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={toDo.data}>
+                <div><strong>ToDo: </strong>{toDo.data.fields.Name.value}</div>
+                <div><strong>ToDo Id: </strong>{toDo.data.fields.ToDo_Id__c.value}</div>
+                <div><strong>Completed: </strong>{toDo.data.fields.Completed__c.value}</div>
+                <div><strong>User Id: </strong>{toDo.data.fields.User_Id__c.value}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,72 @@
+<template>
+    <lightning-card title="Student Form" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+
+            <!-- validation messages -->
+            <div class="slds-align_absolute-center">
+                <template lwc:if={isWarning}>
+                    <div class="slds-text-color_error">{validationMessage}</div>
+                </template>
+                <template lwc:if={isHappy}>
+                    <div class="slds-text-color_success">Thanks for entering the phone number</div>
+                </template>
+            </div>
+
+            <form class="studentform">
+                <!-- Student Name -->
+                <lightning-input
+                    type="text"
+                    label="Student Name"
+                    name="Name__c"
+                    onchange={changeHandler}>
+                </lightning-input>
+
+                <!-- Standard -->
+                <lightning-combobox
+                    label="Standard"
+                    name="Standard__c"
+                    options={standardOptions}
+                    onchange={changeHandler}>
+                </lightning-combobox>
+
+                <!-- Score -->
+                <lightning-input
+                    type="number"
+                    label="Score (of 500)"
+                    name="Score_of_500__c"
+                    onchange={changeHandler}>
+                </lightning-input>
+
+                <!-- Telephone -->
+                <lightning-input
+                    type="tel"
+                    label="Phone"
+                    name="Phone__c"
+                    onchange={changeHandler}>
+                </lightning-input>
+
+                <!-- Address -->
+                <lightning-textarea
+                    label="Address"
+                    name="Address__c"
+                    onchange={changeHandler}>
+                </lightning-textarea>
+
+                <!-- buttons -->
+                <div class="slds-align_absolute-center slds-var-m-top_small">
+                    <lightning-button
+                        label="Cancel"
+                        variant="neutral"
+                        class="slds-var-m-right_x-small"
+                        onclick={cancelHandler}>
+                    </lightning-button>
+                    <lightning-button
+                        label="Save"
+                        variant="brand"
+                        onclick={saveHandler}>
+                    </lightning-button>
+                </div>
+            </form>
+        </div>
+    </lightning-card>
+</template>
