@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Opps by Stage" icon-name="standard:opportunity">
+        <div class="slds-var-m-around_medium">
+            <lightning-combobox
+                label="Select a Stage"
+                options={stageOptions}
+                onchange={changeHandler}>
+            </lightning-combobox>
+            <div class="slds-var-m-top_small">
+                <div><strong>Search Results:</strong></div>
+                <template lwc:if={opps}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={opps}
+                        columns={columns}>
+                    </lightning-datatable>
+                </template>
+                <template lwc:else>
+                    <div>{info}</div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

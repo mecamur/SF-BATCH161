@@ -249,4 +249,31 @@ public with sharing class RestCallouts {
         return response;
     }
 
+
+    //Http Method: GET
+    //Endpoint: https://dummyjson.com/products/1
+    public static void getProduct() {
+        //1. Prepare HttpRequest and wrap all the necessary data in it
+        HttpRequest request = new HttpRequest();
+        request.setMethod('GET');
+        request.setEndpoint('https://dummyjson.com/products/1');
+
+        //2. Prepare Internet
+        Http http = new Http();
+
+        //3. Send the request over the internet in order to receive HttpResponse
+        HttpResponse response = http.send(request);
+
+        //4. Process the response
+        if(response.getStatusCode() == 200) {
+            String jsonString = response.getBody();
+            System.debug(jsonString);
+            ProductWrapper pw = (ProductWrapper)JSON.deserialize(jsonString, ProductWrapper.class);
+            Product__c prod = ProductHandler.convertToSobject(pw);
+            insert prod;
+        } else {
+            System.debug(response.getBody());
+        }
+    }
+
 }

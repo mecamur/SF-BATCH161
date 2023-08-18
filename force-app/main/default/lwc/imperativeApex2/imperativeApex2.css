@@ -1,0 +1,11 @@
+.search-bar {
+    border: 2px solid blue;
+    padding: 6px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+.search-results {
+    border: 2px solid green;
+    padding: 6px;
+    border-radius: 6px;
+}

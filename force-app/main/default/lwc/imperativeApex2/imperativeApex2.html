@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Contact Search" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+            <!-- search bar -->
+            <div class="search-bar">
+                <lightning-input
+                    label="Enter a search term"
+                    type="search"
+                    onchange={changeHandler}>
+                </lightning-input>
+            </div>
+
+            <!-- search results -->
+            <div class="search-results">
+                <div><strong>SEARCH RESULTS</strong></div>
+                <template lwc:if={contacts}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={contacts}
+                        columns={columns}>
+                    </lightning-datatable>
+                </template>
+                <template lwc:if={message}>
+                    {message}
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
