@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="C2P Simple Event" icon-name="standard:event">
+        <div class="slds-var-m-around_medium">
+            <!-- button -->
+            <lightning-button
+                label="Show Modal"
+                variant="brand-outline"
+                onclick={showHandler}>
+            </lightning-button>
+
+            <!-- child modal comp -->
+            <template lwc:if={showModal}>
+                <c-modal-component
+                    onclose={handleClose}>
+                </c-modal-component>
+            </template>
+
+            <!-- display received message -->
+            <template lwc:if={user}>
+                <div class="slds-var-m-top_small">
+                    <strong>Name: </strong> {user.name} <br/>
+                    <strong>Title: </strong> {user.title}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

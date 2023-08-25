@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="P2C Action at Parent" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <lightning-combobox
+                label="Industry"
+                options={industryOptions}
+                onchange={changeHandler}>
+            </lightning-combobox>
+            <div class="slds-var-m-top_medium">
+                <c-display-results
+                    records={accounts}
+                    columns={columns}
+                    errors={error}>
+                </c-display-results>
+            </div>
+        </div>
+    </lightning-card>
+</template>

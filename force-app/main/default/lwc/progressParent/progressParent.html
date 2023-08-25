@@ -1,0 +1,38 @@
+<template>
+    <lightning-card title="PROGRESS BAR" icon-name="standard:chart">
+        <!-- reset button -->
+        <lightning-button
+            label="Reset"
+            variant="success"
+            slot="actions"
+            onclick={resetHandler}>
+        </lightning-button>
+
+        <div class="slds-var-m-around_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning-input
+                        label="Enter Progress Value"
+                        type="number"
+                        name="Progress"
+                        onchange={changeHandler}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col">
+                    <lightning-combobox
+                        label="Select Progress Size"
+                        options={sizeOptions}
+                        name="Size"
+                        onchange={changeHandler}>
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <!-- child comp -->
+            <c-progress-bar
+                progress-value={progress}
+                progress-size={size}>
+            </c-progress-bar>
+        </div>
+    </lightning-card>
+</template>
