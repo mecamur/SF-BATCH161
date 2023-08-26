@@ -1,0 +1,20 @@
+<template>
+    <template lwc:if={dogs}>
+        <template for:each={dogs} for:item="dog">
+            <div key={dog.Id} class="container">
+                <div class="dog-image">
+                    <img src={dog.Image__c} alt={dog.Name} width="300px" height="200px" >
+                </div>
+                <div class="dog-details">
+                    <strong>Name: </strong> {dog.Name} <br/>
+                    <strong>Breed: </strong> {dog.Breed__c} <br/>
+                    <strong>Height: </strong> {dog.Height__c} <br/>
+                    <strong>Weight: </strong> {dog.Weight__c} <br/>
+                    <strong>Life Span: </strong> {dog.Life_Span__c} <br/>
+                    <strong>Description: </strong> {dog.Description__c} <br/>
+                    <strong>More Info At: </strong> {dog.More_Info__c} <br/>
+                </div>
+            </div>
+        </template>
+    </template>
+</template>

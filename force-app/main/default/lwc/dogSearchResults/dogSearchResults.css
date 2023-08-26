@@ -1,0 +1,14 @@
+.container {
+    border: 2px solid green;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    height: 210px;
+}
+.dog-image {
+    width: 30%;
+    float: left;
+    height: 210px;
+}
+.dog-details {
+    height: 210px;
+}
